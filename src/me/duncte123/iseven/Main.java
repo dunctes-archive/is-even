@@ -3,11 +3,15 @@ package me.duncte123.iseven;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
+        genJS();
+    }
 
+    private static void genJS() throws Exception {
         File output = new File("isEven.js");
 
         if (!output.exists()) {
@@ -20,7 +24,8 @@ public class Main {
         int cases = Integer.MAX_VALUE;
 //        int cases = 100;
 
-        try (FileWriter fw = new FileWriter(output)) {
+//        try (FileWriter fw = new FileWriter(output)) {
+        try (PrintWriter fw = new PrintWriter(System.out)) {
             try (BufferedWriter writer = new BufferedWriter(fw)) {
                 writer.write("export function isEven(number) {\n");
                 writer.write(indent(4) + "switch (number) {\n");
@@ -39,7 +44,6 @@ public class Main {
                 writer.write("}\n");
             }
         }
-
     }
 
     private static String indent(int spaces) {
